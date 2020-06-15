@@ -11,29 +11,35 @@ Constructs a new `AmperkaTDS` object. The argument `pinS` the analog output sign
 ### `void begin()`
 
 Initializes the given interface, prepares the board for communication.
-Call this method before interfacing with `AmperkaTDS`. For example, in your `setup()`.
+Call this method before interfacing with `AmperkaTDS`. For example, in your `setup`.
 
 ### `void read()`
 
 Reads and stores the sensor data values: EC and TDS.
 
-### `uint16_t getEC()`
+### `uint16_t getEC() const`
 
-Returns the stored electrical conductivity (EC) when the call method `read`. EC measurement is in microsiemens per centimeter and ranges from `0` to `2500` in `uS/cm`.
+Returns the stored electrical conductivity (EC) when the call method `read`. EC measurement is in microsiemens per centimeter and ranges from 0 to 2500 in uS/cm.
 
-### `uint16_t getTDS()`
+### `uint16_t getTDS() const`
 
-Returns the stored total dissolved solids (TDS) when the call method `read`. TDS measurement is in parts per million and ranges from `0` to `1250` in `ppm`.
-
-### `float getCalibrationFactor()`
-
-Returns the ratio between the known TDS value and the TDS measurement value. In the ideal case, the ratio is `1`. Use the returned value in the function `setCalibrationFactor`. During the calibration, use a liquid buffer solution of known TDS value.
-
-_The measured value may differ from the actual value due to the individual differences between the different TDS sensors and differences in the control boards. Therefore, calibration is required before measurement, to obtain a more accurate TDS value._
+Returns the stored total dissolved solids (TDS) when the call method `read`. TDS measurement is in parts per million and ranges from 0 to 1250 in ppm.
 
 ### `void setCalibrationFactor(float calibrationFactor)`
 
-Corrects the difference between the known TDS value and the TDS measurement value. The argument `calibrationFactor` is the ratio between the known TDS value and the TDS measurement value, which gets `getCalibrationFactor()` function.
+Corrects the difference between the known TDS value and the TDS measurement value. The argument `calibrationFactor` is the ratio between the known TDS value and the TDS measurement value, which returned `readCalibrationFactor` function.
+
+### `float readCalibrationFactor(uint16_t calibrationTDS)`
+
+Calculate and returns the ratio between the known TDS value and the TDS measurement value. In the ideal case, the ratio is `1`. Use the returned value in the function `setCalibrationFactor`. The argument `calibrationTDS` the value liquid buffer solution with a known parameter TDS in ppm.
+
+_The measured value TDS may differ from the actual value due to the individual differences between the different TDS sensors and differences in the control boards. Therefore, calibration is required before measurement, to obtain a more accurate TDS value. During the calibration, use a liquid buffer solution of known TDS value._
+
+**Calibration Step**
+
+- Insert the probe into the buffer solution of known TDS value.
+- Call the function `readCalibrationFactor`, which returns the value `calibrationFactor`.
+- Use the value `calibrationFactor` in the function `setCalibrationFactor`.
 
 ### `void setEnvironmentTemperature(float temperature)`
 
@@ -45,4 +51,4 @@ By default, the internal algorithm uses 25 °C temperature to compensate for env
 
 Sets resolution to output values, that are used to calculate voltage on the sensor in function `read`. The argument `bits` is the current resolution analog to digital conversion (ADC) Arduino board. Ranges from `1` to `32` bits. If omitted, resolution output values are `10`. This function doesn't change the Arduino board resolution.
 
-Resolution ADC is changed with standard Arduino function `analogReadResolution(uint8_t bits)`, but only for some Arduino boards. If you call the function `analogReadResolution (bits uint8_t)`, then call `setAnalogReadResolution (bits uint8_t)` with the same argument `bits`.
+Resolution ADC is changed with standard Arduino function `analogReadResolution(uint8_t bits)`, but only for some Arduino boards. If you call the function `analogReadResolution(bits uint8_t)`, then call `setAnalogReadResolution (bits uint8_t)` with the same argument `bits`.
