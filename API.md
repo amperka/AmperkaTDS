@@ -29,9 +29,9 @@ Returns the stored total dissolved solids (TDS) when the `read` method is called
 
 Corrects the difference between the known TDS value and the TDS measurement value. The argument `calibrationFactor` is the ratio between the known TDS value and the TDS measurement value, which is returned by `readCalibrationFactor` function.
 
-### `float readCalibrationFactor(uint16_t calibrationTDS)`
+### `float readCalibrationFactor(uint16_t calibrationValueTDS)`
 
-Calculates and returns the ratio between the known TDS value and the TDS measurement value. In the ideal case, the ratio is `1`. Use the returned value in the function `setCalibrationFactor`. The argument `calibrationTDS` is the value of liquid buffer solution with a known parameter TDS in ppm.
+Calculates and returns the ratio between the known TDS value and the TDS measurement value. In the ideal case, the ratio is `1`. Use the returned value in the function `setCalibrationFactor`. The argument `calibrationValueTDS` is the value of liquid buffer solution with a known parameter TDS in ppm.
 
 _The measured TDS value may differ from the actual value due to the individual differences between the various TDS sensors and differences in the control boards. Therefore, calibration is required before measurement to obtain a more accurate TDS value. During the calibration, use a liquid buffer solution of known TDS value._
 

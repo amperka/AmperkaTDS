@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map AmperkaTDS
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+AmperkaTDS	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+read	KEYWORD2
+getEC	KEYWORD2
+getTDS	KEYWORD2
+setCalibrationFactor	KEYWORD2
+readCalibrationFactor	KEYWORD2
+setCompensationTemperature	KEYWORD2
+setAnalogReadResolution	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
