@@ -3,13 +3,13 @@
  * from Amperka TDS-sensor.
  */
 
-// Include the library to comunicate with TDS-sensor
+// Include the library to communicate with TDS-sensor
 #include <AmperkaTDS.h>
 
-// Use any analog GPIO pin of the controller
+// Use any analog pin of the controller
 constexpr auto pinSensor = A0;
 
-// Create an object to work with TDS-sensor
+// Create an object for working with Amperka TDS-sensor
 AmperkaTDS sensorTDS(pinSensor);
 
 void setup() {

@@ -5,13 +5,13 @@
  * For more details read the calibration section in API.md
  */
 
-// Include the library to comunicate with Amperka TDS-sensor
+// Include the library to communicate with Amperka TDS-sensor
 #include <AmperkaTDS.h>
 
-// Use any analog GPIO pin of the controller
+// Use any analog pin of the controller
 constexpr auto pinSensor = A0;
 
-// Create an object to work with Amperka TDS-sensor
+// Create an object for working with Amperka TDS-sensor
 AmperkaTDS sensorTDS(pinSensor);
 
 void setup() {
@@ -22,8 +22,7 @@ void setup() {
       ;
     // Start the sensor for communication
     sensorTDS.begin();
-    // Use this function only for calibration sensor,
-    // otherwise comment-out.
+    // Calibrate the sensor
     calibrateSensor();
 }
 
