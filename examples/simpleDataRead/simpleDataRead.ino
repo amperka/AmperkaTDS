@@ -17,7 +17,7 @@ void setup() {
     Serial.begin(9600);
     // Wait for serial port to connect, needed for native USB.
     while (!Serial)
-      ;
+        ;
     // Start the sensor for communication
     sensorTDS.begin();
 }
